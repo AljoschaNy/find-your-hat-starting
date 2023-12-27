@@ -6,13 +6,21 @@ const fieldCharacter = '░';
 const pathCharacter = '*';
 const directionRegex = /[DLRU]/gi;
 
+const testArray = [
+    [pathCharacter, fieldCharacter, hole],
+    [fieldCharacter, hole, fieldCharacter],
+    [fieldCharacter, hat, fieldCharacter]
+]
+
 class Field {
-    constructor(field) {
-        this.field = field;
+    constructor(fieldArray) {
+        this.fieldArray = fieldArray;
+        this.maxPositionX = fieldArray[0].length -1;
+        this.maxPositionY = -(fieldArray.length -1);
     }
 
     print() {
-        this.field.forEach(line => {
+        this.fieldArray.forEach(line => {
             let fieldLine = "";
             line.forEach(item => fieldLine += item);
 
@@ -21,14 +29,11 @@ class Field {
     }
 }
 
-const printField = () => {
-    const myField = new Field([
-        [pathCharacter, fieldCharacter, hole],
-        [fieldCharacter, hole, fieldCharacter],
-        [fieldCharacter, hat, fieldCharacter]
-    ])
-    
+const getField = (arr) => {
+    const myField = new Field(arr)
     myField.print();
+
+    return myField;
 }
 
 const isValidInput = input => {
@@ -46,13 +51,46 @@ const getUserDirection = () => {
         let direction = prompt('Choose a direction (u=up, r=right, d=down, l=left)');
 
         if(isValidInput(direction)) {
-            return direction;
+            return direction.toLowerCase();
         }
     }
 }
 
-const playGame = () => {
-    printField();
-    getUserDirection();
+/*
+
+- get current position (x,y)
+
+2. move player
+- left = x -1
+- right = x +1
+- up = y +1
+- down = y -1
+- arr(x,y) = pathCharacter
+
+*/ 
+
+const getInitialPlayerPosition = arr => {
+    const initialPosition = {};
+
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = 0; j < arr[i].length; j++) {
+            if(arr[i][j] === pathCharacter) {
+                currentPosition.x = j;
+                currentPosition.y = i;
+            }
+        }
+    }
+
+    return initialPosition;
 }
 
+
+
+// const checkSurroundings = () => {
+
+// }
+
+
+const playGame = () => {
+    const currentField = getField(testArray);
+}
