@@ -5,3 +5,14 @@ const hole = 'O';
 const fieldCharacter = '░';
 const pathCharacter = '*';
 
+class Field {
+    constructor(field) {
+        this.field = field;
+    }
+}
+
+const myField = new Field([
+    [pathCharacter, fieldCharacter, hole],
+    [fieldCharacter, hole, fieldCharacter],
+    [fieldCharacter, hat, fieldCharacter]
+])
