@@ -75,8 +75,8 @@ const getInitialPlayerPosition = arr => {
     for(let i = 0; i < arr.length; i++) {
         for(let j = 0; j < arr[i].length; j++) {
             if(arr[i][j] === pathCharacter) {
-                currentPosition.x = j;
-                currentPosition.y = i;
+                initialPosition.x = j;
+                initialPosition.y = i;
             }
         }
     }
@@ -84,13 +84,34 @@ const getInitialPlayerPosition = arr => {
     return initialPosition;
 }
 
+const changePosition = (position, direction) => {
+    switch(direction) {
+        case "u":
+            position.y += 1;
+            break;
+        case "d":
+            position.y -= 1;
+            break;
+        case "r":
+            position.x += 1;
+            break;
+        case "l":
+            position.x -= 1;
+            break;
+        default:
+            break;
+    }
 
+    return position;
+}
 
 // const checkSurroundings = () => {
 
 // }
 
 
-const playGame = () => {
-    const currentField = getField(testArray);
+const playGame = (fieldArr) => {
+    let currentField = getField(fieldArr);
+    let playerPosition = getInitialPlayerPosition(fieldArr);
+    
 }
