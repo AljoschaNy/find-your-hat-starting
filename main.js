@@ -9,6 +9,15 @@ class Field {
     constructor(field) {
         this.field = field;
     }
+
+    print() {
+        this.field.forEach(line => {
+            let fieldLine = "";
+            line.forEach(item => fieldLine += item);
+
+            console.log(fieldLine);
+        });
+    }
 }
 
 const myField = new Field([
@@ -16,3 +25,5 @@ const myField = new Field([
     [fieldCharacter, hole, fieldCharacter],
     [fieldCharacter, hat, fieldCharacter]
 ])
+
+myField.print();
